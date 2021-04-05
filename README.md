@@ -213,7 +213,7 @@ Append `-d` to run in detached mode. The first time you run a service, it is pro
 | ------------ | ----------------------------------- |
 | JACKETT_PORT | the port that jacket will listen on |
 
-`<server-ip>:9117`
+`http://localhost:9117`
 
 `jackett` should be configurable the same as any other installation of it. Feel free to skip these steps if you know how to configure `jackett` already.
 
@@ -233,7 +233,7 @@ Append `-d` to run in detached mode. The first time you run a service, it is pro
 | ----------- | ----------------------------------- |
 | SONARR_PORT | the port that sonarr will listen on |
 
-`<server-ip>:8989`
+`http://localhost:8989`
 
 `sonarr` should be configurable the same as any other installation of it. Feel free to skip these steps if you know how to configure `sonarr` already.
 
@@ -296,7 +296,7 @@ Step-by-step for those who need it
 | ----------- | ----------------------------------- |
 | RADARR_PORT | the port that radarr will listen on |
 
-`<server-ip>:7878`
+`http://localhost:7878`
 
 `radarr` should be configurable the same as any other installation of it. Feel free to skip these steps if you know how to configure `radarr` already.
 
@@ -358,7 +358,7 @@ Step-by-step for those who need it
 | ----------- | ---------------------------------- |
 | BAZARR_PORT | the port that bazar will listen on |
 
-`<server-ip>:6767`
+`http://localhost:6767`
 
 `bazarr` should be configurable the same as any other installation of it. Feel free to skip these steps if you know how to configure `bazarr` already.
 
@@ -377,7 +377,7 @@ Step-by-step for those who need it
 
 ### Configure filebot
 
-`<server-ip>:7676`
+`http://localhost:7676`
 
 | variable          | description                                                                                               |
 | ----------------- | --------------------------------------------------------------------------------------------------------- |
@@ -394,7 +394,7 @@ Step-by-step for those who need it
 
 The opensubtitles configuration is called by the container startup script, but opensubtitles still fails when filebot is actually run. Until I figure out how to make this work, stick to `bazarr`.
 
-You can navigate to `<server-ip>:7676` to see the filebot command that will be run when a download is completed. Do NOT expose this port to the internet as it is not password protected.
+You can navigate to `http://localhost:7676` to see the filebot command that will be run when a download is completed. Do NOT expose this port to the internet as it is not password protected.
 
 These are the `filebot` CLI options: <https://www.filebot.net/cli.html>. If there are additional options you want to be able to configure, open an issue.
 
@@ -411,7 +411,7 @@ These are the `filebot` CLI options: <https://www.filebot.net/cli.html>. If ther
 | TRANS_MAX_RETENTION   | the time in seconds before a torrent is automatically removed |
 | TRANS_MAX_RATIO       | the ratio at which a torrent is automatically removed         |
 
-`<server-ip>:5656`
+`http://localhost:5656`
 
 It should not be necessary to configure transmission beyond the default configuration. The container writes a config with reasonable defaults. If you need access to additional transmission settings, feel free to open an issue.
 
@@ -444,17 +444,17 @@ See [the documentation](https://nzbget.net/documentation) for instructions on se
 The first time that you set up your plex server, you will need to claim the server to associate it with your plex account. You need to access the server via `localhost` or `127.0.0.1` in order to claim it. The easiest way to accomplish this is to create an SSH tunnel to your server so you can access plex on port 32400 on localhost.
 
 ```
-ssh <server-ip> -L 32400:localhost:32400
+ssh localhost -L 32400:http://localhost:32400
 ```
 
-Once you do this, you can now log into plex via `localhost:32400/web` or `127.0.0.1:32400/web` and claim the server. Once the server has been claimed, you can log into it directly via the server's IP address.
+Once you do this, you can now log into plex via `http://localhost:32400/web` or `127.0.0.1:32400/web` and claim the server. Once the server has been claimed, you can log into it directly via the server's IP address.
 
 | variable      | description                                                                                                  |
 | ------------- | ------------------------------------------------------------------------------------------------------------ |
 | PLUGIN_LIST   | a list of plugins to install. supported plugins are `trakt` and `subzero`. leave empty to install no plugins |
 | PLEX_WEB_PORT | the port for the plex web interface                                                                          |
 
-`<server-ip>:32400/web`
+`http://localhost:32400/web`
 
 - Add some libraries
   - TV Shows will be at `/data/TV Shows` assuming you followed the `/media/TV Shows` convention for `TV_DIR`
